@@ -1,0 +1,11 @@
+{
+  "name": "Buller-Bot",
+  "version": "1.0.0",
+  "description": "Momo's daughter",
+  "main": "bot.js",
+  "author": "MomoJelly",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "winston": "^3.2.1"
+  }
+}
