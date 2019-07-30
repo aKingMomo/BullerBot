@@ -16,13 +16,13 @@ var client = new Discord.Client({
 });
 
 //initialize constants
-const prefix = "+";
+const prefix = "/";
 const dbtimeDif = 4;
 
 //bot is logged in
 client.on("ready", () => {
  logger.info('Logged in as: ');
-    logger.info(bot.username + ' - (' + bot.id + ')');
+    logger.info(client.username + ' - (' + client.id + ')');
 });
 
 //imitating how vlv had forte listen for commands
@@ -31,9 +31,8 @@ client.on("message", (message) => {
  if(!message.startsWith(prefix)) return;
  if (message.author.bot) return;
  if (message.channel.type !== "text") return;
- else if(message.content.startsWith(prefix + "dbtime"){
+ if(message.content.startsWith(prefix + "dbtime")){
   var momodate = new Date();
-  var dbtime = "dbtime is currently: " + momodate.getHours()-dbtimeDif + ":" momodate.getMinutes();
-  message.channel.send(dbtime);
+  message.channel.send( "dbtime is currently: " + momodate.getHours()-dbtimeDif + ":"+ momodate.getMinutes());
  }
 });
