@@ -1,13 +1,10 @@
-var Discord = require('discord.io');
+const Discord = require('discord.js');
 var auth = require('./auth.json');
 
 
 
 // Initialize Discord Bot
-var client = new Discord.Client({
-   token: auth.token,
-   autorun: true
-});
+const client = new Discord.Client();
 
 //initialize constants
 const prefix = "/";
@@ -20,11 +17,13 @@ client.on("ready", () => {
 
 
 //todo add more commands
-client.on("message", (user, userID, channelID, message, evt) => {
- if(message.startsWith(prefix+"dbtime")){
+client.on("message", msg => {
+ if(msg.content.startsWith(prefix+"dbtime")){
 	var momodate = new Date();
 	momodate.setHours(momodate.getHours()-dbtimeDif);
 	var dbtime = "dbtime is currently: "+ momodate.toLocaleTimeString();
-	client.sendMessage({to: channelID, message: dbtime});
+	msg.channel.send(dbtime);
  }
 });
+
+client.login(auth.token);
