@@ -7,7 +7,7 @@ const client = new Discord.Client();
 
 //initialize constants
 const prefix = "/";
-const dbtimeDif = 4;
+const dbtimeDif = 3;
 
 //bot is logged in
 client.on("ready", () => {
@@ -24,7 +24,7 @@ client.on("message", msg => {
 	}
  }
  //dbtime
- if(msg.content.startsWith(prefix+"dbtime")){
+ if(msg.content.startsWith(prefix+"dbtime")||msg.content.startsWith(prefix+"db time")){
 	 let allowedRole = msg.guild.roles.find(role => role.name === "Team Dawnbreakers");
 	 if(msg.member.roles.has(allowedRole.id)){
 		 var momodate = new Date();
@@ -77,10 +77,20 @@ if(msg.content.startsWith(prefix+"melaresources")){
 if(msg.content.startsWith(prefix+"commands")){
 	let allowedRole = msg.guild.roles.find(role => role.name === "Team Dawnbreakers");
 	if(msg.member.roles.has(allowedRole.id)){
-		msg.channel.send("My current commands are: \n /dbtime \n /matchup \n /melaresources \n /teamchat ");
+		msg.channel.send("My current commands are: \n /dbtime \n /matchup \n /melaresources \n /teamchat \n /svolog");
 	}else{
 		const momosmug = client.emojis.find(emoji => emoji.name === "momosmug");
 		msg.channel.send(`Wouldn't you like to know? ${momosmug}`);
+	}
+}
+
+if(msg.content.startsWith(prefix+"svolog")){
+	let allowedRole = msg.guild.roles.find(role => role.name === "Team Dawnbreakers");
+	if(msg.member.roles.has(allowedRole.id)){
+		msg.channel.send("Here's the SVO log: \n"+auth.svolog);
+	}else{
+		const momosmug = client.emojis.find(emoji => emoji.name === "momosmug");
+		msg.channel.send("Who are you?");
 	}
 }
 
@@ -91,6 +101,12 @@ if(msg.content.startsWith(prefix+"ohayou")){
 	}
 	msg.channel.send("ohayou sekai! good morning world!");
 	
+}
+
+//coinflip
+if(msg.content.startsWith(prefix+"coinflip")){
+	const momosmug = client.emojis.find(emoji => emoji.name === "momosmug");
+	msg.channel.send(`you go second${momosmug}`);
 }
 
 
